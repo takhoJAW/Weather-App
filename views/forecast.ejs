@@ -7,12 +7,17 @@
 </head>
 <body>
     <h1>5-day forecast:</h1>
-    <% Forecast.list.forEach(forecast=>{ %>
-        <p>Date: <%= forecast.dt_txt%></p>
-        <p>Temperature: <%= forecast.main.temp  %></p>
-        <p>Weather: <%= forecast.weather[0].description  %></p>
-   <% })%>
-    
+    <% if(forecast && forecast.length){ %>
+    <% forecast.forEach(day =>{ %>
+    <div>
+        <h2> <%=day.rooz%> </h2>
+        <p> Day Temperature: <%=day.dayTemp%>°C </p>
+        <p> Day description: <%= day.dayDes%> </p>
+        <p> Night Temperature: <%= day.nightTemp%>°C </p>
+        <p>Night Description: <%= day.nightDes%> </p>
+    </div>
+   <% })} %>
+
 </body>
 </html>
 
