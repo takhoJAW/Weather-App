@@ -3,21 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/forecast.css">
     <title>Forecast</title>
 </head>
 <body>
     <h1>5-day forecast:</h1>
-    <% if(forecast && forecast.length){ %>
-    <% forecast.forEach(day =>{ %>
-    <div>
-        <h2> <%=day.rooz%> </h2>
-        <p> Day Temperature: <%=day.dayTemp%>°C </p>
-        <p> Day description: <%= day.dayDes%> </p>
-        <p> Night Temperature: <%= day.nightTemp%>°C </p>
-        <p>Night Description: <%= day.nightDes%> </p>
-    </div>
-   <% })} %>
+    <div class="forecast-cont">
+        <% forecast.forEach(day =>{ %>
+        <div class="forecast-item">
+            <button class="date-heading" data-date="<%= day.rooz%>"><h2><%=day.rooz%> </h2></button>
+            <p class="icon"><img src="http://openweathermap.org/img/wn/<%= day.dayIcon %>@2x.png" alt="Day Weather Icon"></p>
+            <p> <%= day.dayDesc%> </p>
+            <p> <%= day.dayTemp%>°C </p>
+            <p><img src="http://openweathermap.org/img/wn/<%= day.nightIcon %>@2x.png" alt="Night Weather Icon"></p>
+            <p> <%= day.nightDesc%> </p>
+            <p> <%= day.nightTemp%>°C </p>
+        </div>
+    
+            <div class="details" id="details-<%= day.rooz %>" style="display: none;">
+                <% day.entries.forEach(entry => {%>
+                    <div class="entry">
+                        <h3><%= entry.dt_txt.split(" ")[1]%>:</h3>
+                        <p> <%= entry.main.temp %>°C</p>
+                        <p> <%= entry.weather[0].description %></p>
+                    </div>
+              <%  }) %>   
+            
+          </div>
+    <% }) %>
+     </div>
 
+    <script>
+        document.querySelectorAll('.date-heading').forEach(heading => {
+            heading.addEventListener("click", function() {
+                const date = this.getAttribute("data-date");
+                const details = document.getElementById(`details-${date}`);
+
+                if(details.style.display === 'none'){
+                    details.style.display = 'flex';
+                }
+                else {
+                    details.style.display = 'none';
+                }
+            })
+        })
+    </script>
 </body>
 </html>
 

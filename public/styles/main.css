@@ -1,0 +1,66 @@
+body{
+    background: linear-gradient(180deg,  #2575fc,#6a11cb);
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+
+
+}
+
+header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+}
+
+form{
+    width: 25%;
+}
+
+.latlon{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+input[type="text"]{
+    height: 45px;
+    padding: 10px;
+    border: none;
+    font-size: 15px;
+    outline: none;
+}
+
+input[type="submit"]{
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: #6a11cb;
+    transition: 0.3s;
+}
+
+#lat{
+    border-bottom: 1px solid black;
+    border-radius: 5px 5px 0 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
+

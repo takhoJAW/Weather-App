@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+    <header>
+        <h1>Welcom to the Weather App</h1>
+        <p>Get the current weather and 5-day forecast for any location.</p>
+    </header>
     <form method="post">
-        <input type="text" name="lat" placeholder="Enter latitude">
-        <input type="text" name="lon" placeholder="Enter longitude">
-
-        <input type="submit" value="current weather" formaction="/current_weather" >
-        <input type="submit" value="forecast" formaction="/forecast">
+        <div class="latlon">
+        <input id="lat" type="text" name="lat" placeholder="Enter latitude">
+        <input  type="text" name="lon" placeholder="Enter longitude">
+        </div>
+        <div class="buttons">
+        <input type="submit" value="Current Weather" formaction="/current_weather">
+        <input type="submit" value="Forecast" formaction="/forecast">
+        </div>
     </form>
 
 
