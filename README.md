@@ -27,8 +27,10 @@ Welcome to the Weather App! This application provides the current weather and a 
     ```sh
     npm install
     ```
+4. go to the OpenWeatherMap website and generate an api key.
 
-4. Create a `.env` file in the root directory and add your OpenWeatherMap API key:
+
+4.2. Create a `.env` file in the root directory and add your OpenWeatherMap API key:
 
     ```env
     API_KEY=your_openweathermap_api_key
@@ -37,7 +39,7 @@ Welcome to the Weather App! This application provides the current weather and a 
 5. Start the application:
 
     ```sh
-    npm start
+    node index.js
     ```
 
 6. Open your browser and navigate to `http://localhost:3000`.
