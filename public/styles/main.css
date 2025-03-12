@@ -62,5 +62,16 @@ input[type="submit"]:hover{
     margin-top: 10px;
 }
 
+a{
+    color: #ddc1ed;
+    font-weight: bold;
+    font-family:'Roboto', sans-serif;
+    text-decoration: none;
+    }
+
+a:hover{
+    text-decoration: underline;
+}
+
 
 

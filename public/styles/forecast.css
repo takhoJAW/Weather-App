@@ -1,3 +1,4 @@
+
 body {
     background: linear-gradient(180deg, #2575fc,#6a11cb);
     font-family: 'Oswald', sans-serif;
@@ -6,26 +7,37 @@ body {
     justify-content: flex-start;
     padding-top: 45px;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     color: white;
     
 }
 
-.forecast-cont{
-   display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 30px;
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+    
 }
 
-/* .forecast-item{
+.forecast-cont{
+    display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   gap: 30px;
+}
+
+.forecast-item{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-} */
+}
 
 button{
     background-color: #2575fc;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+
     color: white;
     font-size: 12px;
     border: none;
@@ -41,24 +53,23 @@ div.forecast-item{
     padding: 10px;      
 }
 
-div.details{
-    background-color: #1448a1;
-    display: flex;
+.details{
+    margin-top: 20px;
+    background: rgba(5, 0, 37, 0.852);
     flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-    width: 100%; /* Ensure it takes up the full width */
-    flex-wrap: wrap; /* Allow items to wrap if needed */
-    overflow-x: auto; /* Add horizontal scrolling if needed */
+    justify-content: space-around;
+    border-radius: 10px;
+    width: 100%;
 }
 
-div.entry {
+div.entry{
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    width: 100%;
 }
 
     p{
@@ -72,4 +83,56 @@ div.entry {
 button:hover{
     background-color: #6a11cb;
     transition: 0.3s;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 866px) {
+    .forecast-cont {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .forecast-item {
+        max-width: 100%;
+    }
+
+    header p{
+        display: none;
+     }
+
+     button:hover {
+        background-color: #2575fc; /* Cancel hover effect */
+    }
+
+    button{
+        cursor:default;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+    button {
+        font-size: 10px;
+        padding: 3px;
+    }
+
+    header p{
+        display: none;
+     }
+
+    p {
+        font-size: 14px;
+    }
+
+    button{
+        cursor:default;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    button:hover {
+        background-color: #2575fc; /* Cancel hover effect */
+
+    }
 }

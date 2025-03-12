@@ -7,11 +7,15 @@
     <title>Forecast</title>
 </head>
 <body>
+   <header>
     <h1>5-day forecast:</h1>
+    <p>Click on each date to see the full weather forecast data with 3-hour intervals. </p>
+    </header>
+
     <div class="forecast-cont">
         <% forecast.forEach(day =>{ %>
         <div class="forecast-item">
-            <button class="date-heading" data-date="<%= day.rooz%>"><h2><%=day.rooz%> </h2></button>
+            <button class="date-button" data-date="<%= day.rooz %>"><h2><%= day.rooz%> </h2></button>
             <p class="icon"><img src="http://openweathermap.org/img/wn/<%= day.dayIcon %>@2x.png" alt="Day Weather Icon"></p>
             <p> <%= day.dayDesc%> </p>
             <p> <%= day.dayTemp%>°C </p>
@@ -19,35 +23,53 @@
             <p> <%= day.nightDesc%> </p>
             <p> <%= day.nightTemp%>°C </p>
         </div>
-    
-            <div class="details" id="details-<%= day.rooz %>" style="display: none;">
-                <% day.entries.forEach(entry => {%>
-                    <div class="entry">
-                        <h3><%= entry.dt_txt.split(" ")[1]%>:</h3>
-                        <p> <%= entry.main.temp %>°C</p>
-                        <p> <%= entry.weather[0].description %></p>
-                    </div>
-              <%  }) %>   
-            
-          </div>
     <% }) %>
      </div>
 
+     <% forecast.forEach(day =>{ %>
+     <div class="details" id="details-<%= day.rooz %>" style="display: none;">
+        <% day.entries.forEach(entry => { %>
+            <div class="entry">
+                <h3><%= entry.dt_txt.split(" ")[1] %>:</h3>
+                <p> <img src="http://openweathermap.org/img/wn/<%= entry.weather[0].icon %>@2x.png" alt="icon"></p>
+                <p> <%= entry.main.temp %>°C</p>
+                <p> <%= entry.weather[0].main %></p>
+            </div>
+        <% }) %> 
+     </div>  
+        <%}) %>
+    
+
+
     <script>
-        document.querySelectorAll('.date-heading').forEach(heading => {
-            heading.addEventListener("click", function() {
-                const date = this.getAttribute("data-date");
+         // Select all elements with the class 'date-button' and convert the NodeList to an array
+        const allDates = Array.from(document.querySelectorAll('.date-button')).map(button => button.getAttribute('data-date'));
+
+            // Add event listeners to each date button
+          document.querySelectorAll('.date-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const date = this.getAttribute('data-date');
                 const details = document.getElementById(`details-${date}`);
 
-                if(details.style.display === 'none'){
-                    details.style.display = 'flex';
+                if (window.innerWidth <= 866) {
+                    return; // Do not show details on small screens
                 }
-                else {
+
+                if (details.style.display === 'none') {
+                    details.style.display = 'flex';
+                    allDates.forEach(d => {
+                        if (d !== date) {
+                            document.getElementById(`details-${d}`).style.display = 'none';
+                        }
+                    });
+                } else {
                     details.style.display = 'none';
                 }
-            })
-        })
+            });
+        });
     </script>
 </body>
 </html>
 
+
+  

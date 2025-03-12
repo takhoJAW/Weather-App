@@ -29,6 +29,7 @@ app.post("/current_weather", async (req, res) => {
         const weather = await axios.get(`${API_URL}/weather?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metric`);
         res.render("current.ejs", { CWeather: weather.data });
     } catch (error) {
+        console.error("Error fetching current weather data:", error);
         res.status(500).send("Error fetching weather data");
     }
 });
@@ -36,7 +37,7 @@ app.post("/current_weather", async (req, res) => {
 app.post("/forecast", async (req, res) => {
     const { lat, lon } = req.body;
     if (!lat || !lon) {
-        // return res.status(400).send("Please enter both latitude and longitude.");
+        return res.status(400).send("Please enter both latitude and longitude.");
     }
     try {
         const forecast = await axios.get(`${API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metric`);
